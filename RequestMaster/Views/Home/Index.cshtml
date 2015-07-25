@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "Стартовая страница";
+}
+
+<div class="jumbotron">
+    <h2>Сервис-центр</h2>
+    <div class="container">
+        <div class="row">
+            <div>
+                <a href="@Url.Action("GetRequestsById","Request")" class=" col-md-3 btn btn-primary"> Посмотреть свои заявки</a>
+                <a href="@Url.Action("Index","Request")" class="col-md-offset-1 col-md-2 btn btn-primary">Добавить заявку</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <a href="@Url.Action("GetAllRequests", "Request")" class=" col-md-offset-1 col-md-3 btn btn-primary"> Посмотреть все заявки</a>
+                }
+            </div>
+        </div>
+    </div>
+</div>

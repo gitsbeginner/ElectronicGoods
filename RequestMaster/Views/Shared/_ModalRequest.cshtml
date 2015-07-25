@@ -1,0 +1,96 @@
+﻿@model RequestMaster.Models.Request
+
+<div class="modal fade" id=@Model.ID>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal">&times;</button>
+                <h4>Заявка № @Model.ID</h4>
+            </div>
+            <div class="modal-header">
+                <div class="fluid-container">
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Категория</div>
+                            <div class="col-md-8 second">@Model.Category</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Краткое описание проблемы</div>
+                            <div class="col-md-8 second">@Model.ShortDescription</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Детальное описание проблемы</div>
+                            <div class="col-md-8 second">@Model.DetailsDescription</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Гарантия</div>
+                            <div class="col-md-8 second">@(Model.IsWarranty ? "Да" : "Нет")</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Фирма-производитель</div>
+                            <div class="col-md-8 second">@Model.ManufacturingFirm</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Контактные данные</div>
+                            <div class="col-md-8 second">@Model.ContactData</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Дата добавления</div>
+                            <div class="col-md-8 second">@Model.InitialDate</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Дедлайн заявки</div>
+                            <div class="col-md-8 second">@Model.DeadlineRequest</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Состоние</div>
+                            <div class="col-md-8 second">@Model.State</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="wrap">
+                            <div class="col-md-4 first">Ответственный(мастер)</div>
+                            <div class="col-md-8 second">@Model.MasterID</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class= "col-md-8 col-md-offset-3 manage_buttons">
+                            <a href="@Url.Action("EditRequest", "Request", new { request_id = Model.ID })" class="col-md-4 btn btn-primary"> Редактировать </a>
+                            <a href="@Url.Action("DeleteRequest", "Request", new { request_id = Model.ID })" class="col-md-4 btn btn-danger" onclick="return confirm('Вы уверены?')" >Удалить </a>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" type="button" data-dismiss="modal">Отмена</button>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+</div>

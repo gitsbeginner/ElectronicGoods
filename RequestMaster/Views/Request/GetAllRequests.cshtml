@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<RequestMaster.Models.Request>
+@using RequestMaster.Models
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Все заявки";
+}
+
+<h3>Заявки</h3>
+<div class="container-fluid">
+    <div class="row">
+        <div class="requests">
+            <table>
+                <thead> 
+                <th>Категория</th>
+                <th>Краткое описание проблемы</th>
+                <th>Детальное описание проблемы</th>
+                <th>Гарантия</th>
+                <th>Фирма-производитель</th>
+                <th>Дата добавления</th>
+                <th>Деделайн рассмотрения заявки</th>
+                <th>Состояние</th>
+                <th>Мастер</th>
+                <th></th>
+                </thead>
+                <tbody>
+                    @foreach (Request request in Model)
+                    {                    
+                        <tr>
+                            <td>@request.Category</td>
+                            <td>Краткое описание проблемы</td>
+                            <td>Детальное описание проблемы</td>
+                            <td>@(request.IsWarranty?"Да":"Нет")</td>
+                            <td>@request.ManufacturingFirm</td>
+                            <td>@request.InitialDate</td>
+                            <td>@request.DeadlineRequest</td>
+                            <td>@request.State</td>
+                            <td>@request.MasterID</td>
+                            <td>
+                                <button data-toggle="modal" type="button" class="btn btn-success" data-target='#@request.ID'> Просмотр </button>
+                                @Html.Partial("_ModalRequest", request)
+                            </td>
+                        </tr>
+                      
+                    }
+
+                </tbody>
+
+            </table>
+            @Html.PagedListPager(Model, page => Url.Action("GetAllRequests", new { page}))
+        </div>
+    </div>
+</div>

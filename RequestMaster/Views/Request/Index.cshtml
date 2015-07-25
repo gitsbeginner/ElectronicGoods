@@ -1,0 +1,59 @@
+﻿@model RequestMaster.Models.Request
+@{
+    ViewBag.Title = "Заявки";
+}
+
+<h3> Добавить заявку </h3>
+@using (Html.BeginForm("Index", "Request", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Category, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(x => x.Category, new SelectList(new RequestMaster.Models.RequestContext().Categories, "Name", "Name"), new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.ShortDescription, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.ShortDescription, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.DetailsDescription, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(x => x.DetailsDescription, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.IsWarranty, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+           
+           Да @Html.RadioButtonFor(x => x.IsWarranty, new { @class = "col-md-1 control-label",@checked="checked" })
+       
+                Нет @Html.RadioButtonFor(x => x.IsWarranty, new { @class = "col-md-1 control-label" })
+              
+                </div>
+        </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.ManufacturingFirm, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.ManufacturingFirm, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.ContactData, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(x => x.ContactData, new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+            <input class="btn btn-default" value="Подтвердить" type="submit" />
+        </div>
+    </div>
+
+}
+
+

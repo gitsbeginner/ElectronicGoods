@@ -1,0 +1,61 @@
+﻿@model RequestMaster.Models.Request
+@{
+    ViewBag.Title = "Редактирование";
+}
+
+<h3>Редактирование</h3>
+@using (Html.BeginForm("EditRequest", "Request", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Category, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(x => x.Category, new SelectList(new RequestMaster.Models.RequestContext().Categories, "Name", "Name"), new { @class = "form-control", value = @Model.Category })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.ShortDescription, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.ShortDescription, new { @class = "form-control", value = @Model.ShortDescription })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.DetailsDescription, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(x => x.DetailsDescription, new { @class = "form-control", value = @Model.DetailsDescription })
+        </div>
+    </div>
+    {
+        var yesOptions = Model.IsWarranty ? true : false;
+        var noOptions = !Model.IsWarranty ? true : false;
+        <div class="form-group">
+            @Html.LabelFor(x => x.IsWarranty, new { @class = "col-md-3 control-label" })
+            <div class="col-md-9">             
+                Да @Html.RadioButtonFor(x => x.IsWarranty, "true", yesOptions)
+                Нет @Html.RadioButtonFor(x => x.IsWarranty, "false", noOptions)
+            </div>
+        </div>
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.ManufacturingFirm, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextBoxFor(x => x.ManufacturingFirm, new { @class = "form-control", value = @Model.ManufacturingFirm })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(x => x.ContactData, new { @class = "col-md-3 control-label" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(x => x.ContactData, new { @class = "form-control", value = @Model.ContactData })
+        </div>
+    </div>
+    
+           @Html.TextBoxFor(x => x.ID, new { type = "hidden", value = @Model.ID })
+ 
+    <div class="form-group">
+        <div class="col-md-offset-3 col-md-6">
+            <input class="btn btn-default" value="Сохранить" type="submit" />
+        </div>
+    </div>
+
+}
